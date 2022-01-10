@@ -1,0 +1,19 @@
+{
+  "name": "sass_automation",
+  "version": "1.0.0",
+  "description": "automate css useing sass by providing some functions and mixin redy to use  ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Mahmoud1478/sass-automation.git"
+  },
+  "author": "mahmoud mostafa ali",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mahmoud1478/sass-automation/issues"
+  },
+  "homepage": "https://github.com/Mahmoud1478/sass-automation#readme"
+}

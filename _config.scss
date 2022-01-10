@@ -1,0 +1,94 @@
+// web site global setting 
+
+$defaultDir : rtl;
+
+$imagesPath : "../folder name/images/" ; // related to main style.css 
+
+//*************************************************************//
+//                           font families                     // 
+// ************************************************************//
+
+$fontsPath : "../folder name/fonts/" ; // related to main style.css 
+
+$fontFamilies:(
+    //dubai:(
+        //(
+        //    src: $fontsPath + 'Dubai-Regular.ttf' ,
+        //    style:normal,
+        //    weight:400,
+        //)
+        //(
+        //    src: $fontsPath + 'Dubai-Medium.ttf' ,
+        //    style:normal,
+        //    weight:500
+        //)
+        //(
+        //    src: $fontsPath + 'Dubai-Light.ttf' ,
+        //    style:normal,
+        //    weight:300,
+        //)
+        //(
+        //    src: $fontsPath + 'Dubai-Bold.ttf' ,
+        //    style:normal,
+        //    weight:600,
+        //)
+    //),
+);
+
+
+//*************************************************************//
+//                           typography                        // 
+// ************************************************************//
+$typo:(
+    xs:  .75rem,        //12px
+    sm:  .875rem,       //14px   
+    nor: 1rem,          //16px
+    md:  1.125rem,      //18px 
+    lg:  1.25rem,       //20px
+    xl:  1.375rem,      //22px
+    xxl: 1.5            //24px
+    en:  sans-serif,
+    ar:  sans-serif
+);
+//*************************************************************//
+//                           media query                       // 
+// ************************************************************//
+
+$breakPoints:(
+    mobile:(
+        min:0px,
+        max:575.98px,
+    ),
+    tablet:(
+        min:575.99px,
+        max:767.98px,
+    ),
+    desktop:(
+        min:767.99px,
+        max:991.98px
+    ),
+    large_desktop:(
+        min:991.99px,
+    ),
+);
+
+$prefixes:(--webkit-,-o-, -ms-, -moz- );
+
+
+//*************************************************************//
+//                           border radius                     // 
+// ************************************************************//
+
+$borderRadius :.4375rem; // 7px
+
+
+
+//*************************************************************//
+//                           Spacer                            // 
+// ************************************************************//
+
+$paddingY :3.125rem; // 50px
+$paddingX :0;
+
+$marginY :3.125rem; // 50px 
+$marginX :0;
