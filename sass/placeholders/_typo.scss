@@ -1,0 +1,9 @@
+@use  "./../config" as *;
+@use "sass:map";
+
+
+@each $fontSize ,$value in map-get($typo, sizes) {
+    %fs-#{$fontSize}{
+        font-size: #{$value};
+    } 
+}

@@ -1,0 +1,83 @@
+@use './../config';
+
+$directionsCssMapper:(
+    left: right,
+    right:left
+);
+
+
+@function getOppositeDir ($dir){
+    @return map-get($map:$directionsCssMapper , $key:$dir )
+};
+
+
+@mixin dir ($htmlDir:config.$defaultDir){
+    $supportedDirections : (rtl,ltr);
+    @if not index($list: $supportedDirections, $value: $htmlDir){
+        @error 'there is no html dir like #{$htmlDir}';
+    }
+    html[dir='#{$htmlDir}'] &{
+        @content;
+    }
+};
+
+
+@mixin dirs($CssProps,$dir:config.$defaultDir) {
+    $supportedDirections : (rtl,ltr);
+    $cssPropName : "";
+    $cssPropValue : "";
+    @if type-of($value:$CssProps ) == string {
+        $cssPropName : str-replace(nth($list: str-split($CssProps,":"), $n: 1 ) , " " , "");
+        $cssPropValue :  str-replace(nth($list: str-split($CssProps,":"), $n: 2 ) , " " , "");
+        $PropertyDirection:$cssPropName;
+        @if str-index($cssPropName,'-') {
+            $PropertyDirection : nth(str-split($cssPropName , "-"), 2);
+        }
+        @each $dir in $supportedDirections {
+            @include dir($dir){
+                @if $dir == $dir {
+                    #{$cssPropName} : #{$cssPropValue}
+                }@else{
+                    @if map-has-key($map: $directionsCssMapper, $key:$PropertyDirection ){
+                        #{str-replace($cssPropName, $PropertyDirection, getOppositeDir($PropertyDirection))} : #{$cssPropValue }
+                    }@else if map-has-key($map: $directionsCssMapper, $key: $cssPropValue){
+                        #{$cssPropName} : #{getOppositeDir($cssPropValue)}
+                    }
+                    @else{
+                        #{$cssPropName} : #{$cssPropValue}
+                    }
+                }
+            }
+        }
+    }@else if type-of($value: $CssProps) == list {
+        @each $dir in $supportedDirections {
+            @include dir($dir){
+                @each $prop in $CssProps {
+                    $cssPropDetail : str-split($prop , ":");
+                    $cssPropName : str-replace(nth($list:$cssPropDetail, $n: 1 ) , " " , "");
+                    $cssPropValue :  str-replace(nth($list:$cssPropDetail, $n: 2 ) , " " , "");
+                    $PropertyDirection:$cssPropName;
+                    @if str-index($cssPropName,'-') {
+                        $PropertyDirection : nth(str-split($cssPropName , "-"), 2);
+                    }
+                    @if $dir == $dir {
+                        #{$cssPropName} : #{$cssPropValue}
+                    }@else{
+                        @if map-has-key($map: $directionsCssMapper, $key:$PropertyDirection ){
+                            #{str-replace($cssPropName, $PropertyDirection, getOppositeDir($PropertyDirection))} : #{$cssPropValue} 
+                        }@else if map-has-key($map: $directionsCssMapper, $key: $cssPropValue){
+                            #{$cssPropName} : #{getOppositeDir($cssPropValue)}
+                        }
+                        @else{
+                            #{$cssPropName} : #{$cssPropValue}
+                        }
+                    }
+                }
+            }
+        }
+    }@else{
+        @error "#{type-of($CssProps)} not supported"
+    }
+};
+
+
