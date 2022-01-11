@@ -50,5 +50,20 @@
   font-weight: 700;
   font-style: normal;
 }
+html[dir=rtl] body {
+  font-family: "dubai", sans-serif;
+}
+html[dir=ltr] body {
+  font-family: sans-serif;
+}
+
+.frame {
+  color: white;
+  background-image: url("../images/icon-1.png");
+}
+
+.btn {
+  color: black;
+}
 
 /*# sourceMappingURL=style.css.map */

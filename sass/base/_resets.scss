@@ -1,0 +1,11 @@
+@use "./../tools" as *;
+@use "./../config";
+
+body{
+    @include dir{
+        font-family: map-get(config.$typo ,families,ar);
+    }
+    @include dir(ltr){
+        font-family: map-get(config.$typo ,families,en);
+    }
+}

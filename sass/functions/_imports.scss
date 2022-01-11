@@ -3,10 +3,10 @@
 
 
 @function image($imgName){
-    @return #{$imagesPath + $imgName}
+    @return "#{$imagesPath + $imgName}"
 };
 
 @function font($fontName){
-    @return #{$fontsPath + $fontName}
+    @return "#{$fontsPath + $fontName}"
 };
 

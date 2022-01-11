@@ -1,2 +1,6 @@
-//@use "./tools" as *;
-@use "./../placeholders/index" as *;
+@import "../tools";
+
+
+.btn{
+    color:$black
+}

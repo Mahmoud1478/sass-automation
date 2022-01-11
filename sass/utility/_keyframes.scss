@@ -1,0 +1,6 @@
+@use  "./../tools" as * ; 
+
+.frame{
+    color: $white;
+    background-image: url(image("icon-1.png"));
+}

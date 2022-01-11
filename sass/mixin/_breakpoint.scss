@@ -1,3 +1,5 @@
+@use './../config' as *;
+@use  './../functions/index' as *;
 $statements :(
     min:"(min-width : value)",
     max:"(max-width : value)",
@@ -24,10 +26,10 @@ $statements :(
         }
         $statement:map-get($statements,$type);
         @if $type != and  {
-            $statement : str-replace($statement,"value",map-get($map: map-get($map: $supportedMedia, $key: $breakpoint), $key:$targetValueFromMedia ));
+            $statement : str-replace($statement,"value",map-get($breakPoints, $breakpoint, $targetValueFromMedia ));
         }@else{
-            $statement : str-replace($statement,"minValue",map-get($map: map-get($map: $supportedMedia, $key: $breakpoint), $key:min ));
-            $statement : str-replace($statement,"maxValue",map-get($map: map-get($map: $supportedMedia, $key: $breakpoint), $key:max ));
+            $statement : str-replace($statement,"minValue",map-get($breakPoints,$breakpoint,min ));
+            $statement : str-replace($statement,"maxValue",map-get($breakPoints,$breakpoint,max ));
         }
     }
     @media #{$statement} {
