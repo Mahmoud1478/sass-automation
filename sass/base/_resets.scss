@@ -1,11 +1,12 @@
 @use "./../tools" as *;
 @use "./../config";
+@use "sass:map";
 
 body{
     @include dir{
-        font-family: map-get(config.$typo ,families,ar);
+        font-family: map.get(config.$typo ,families,ar);
     }
     @include dir(ltr){
-        font-family: map-get(config.$typo ,families,en);
+        font-family: map.get(config.$typo ,families,en);
     }
 }

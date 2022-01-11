@@ -1,17 +1,14 @@
-$prefixes:(--webkit-,-o-, -ms-, -moz- );
-
+$prefixes:(-webkit-,-o-, -ms-, -moz- );
 @mixin addPrefix($property,$value , $important:false) {
     $importantStatus :"";
+    @if $important{
+        $importantStatus : "!important" ;
+    }
     @each $prefix in $prefixes {
-        @if $important{
-            $importantStatus : "!important" ;
-        }
         #{$prefix + $property} : #{$value +  $importantStatus};
     }
-    #{$property}:$value;
+    #{$property} : #{$value +  $importantStatus};
 }
-
-
 
 @mixin borderRadius($value: $borderRadius) {
     @include addPrefix(border-radius,$value);
@@ -26,7 +23,6 @@ $prefixes:(--webkit-,-o-, -ms-, -moz- );
     @include addPrefix(box-shadow,#{$value} ,$important)
 }
 
-
 @function prefixList ($property,$value){
     $values: ();
     @each $prefix in $prefixes {
@@ -34,6 +30,17 @@ $prefixes:(--webkit-,-o-, -ms-, -moz- );
     }
     @return $values
 };
+
+@mixin addValuePrefix($property,$value , $important:false) {
+    $importantStatus :"";
+    @if $important{
+        $importantStatus : "!important" ;
+    }
+    @each $prefix in $prefixes {
+        #{$property} : #{$prefix + $value +  $importantStatus};
+    }
+    #{$property} : #{$value +  $importantStatus};
+}
 
 
 

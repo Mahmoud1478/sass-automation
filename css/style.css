@@ -63,7 +63,16 @@ html[dir=ltr] body {
 }
 
 .btn {
-  color: black;
+  background-image: -webkit-linear-gradient(left, #2ed8a3 0%, #2970ff 100%)!important;
+  background-image: -o-linear-gradient(left, #2ed8a3 0%, #2970ff 100%)!important;
+  background-image: -ms-linear-gradient(left, #2ed8a3 0%, #2970ff 100%)!important;
+  background-image: -moz-linear-gradient(left, #2ed8a3 0%, #2970ff 100%)!important;
+  background-image: linear-gradient(left, #2ed8a3 0%, #2970ff 100%)!important;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 /*# sourceMappingURL=style.css.map */
