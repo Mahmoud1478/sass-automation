@@ -57,22 +57,19 @@ html[dir=ltr] body {
   font-family: sans-serif;
 }
 
-.frame {
-  color: white;
-  background-image: url("../images/icon-1.png");
+html[dir=rtl] .test {
+  padding-right: 50px;
+  left: 20px;
+  text-align: left;
+  transform-origin: top right;
+  background-image: -webkit-linear-gradient(left, #2ed8a3 0%, #2970ff 100%);
 }
-
-.btn {
-  background-image: -webkit-linear-gradient(left, #2ed8a3 0%, #2970ff 100%)!important;
-  background-image: -o-linear-gradient(left, #2ed8a3 0%, #2970ff 100%)!important;
-  background-image: -ms-linear-gradient(left, #2ed8a3 0%, #2970ff 100%)!important;
-  background-image: -moz-linear-gradient(left, #2ed8a3 0%, #2970ff 100%)!important;
-  background-image: linear-gradient(left, #2ed8a3 0%, #2970ff 100%)!important;
-  -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+html[dir=ltr] .test {
+  padding-left: 50px;
+  right: 20px;
+  text-align: right;
+  transform-origin: top left;
+  background-image: -webkit-linear-gradient(right,  #2ed8a3 0%,  #2970ff 100%);
 }
 
 /*# sourceMappingURL=style.css.map */

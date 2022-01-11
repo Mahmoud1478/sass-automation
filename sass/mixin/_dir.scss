@@ -1,6 +1,7 @@
 @use './../config' as *;
 @use './../functions/index' as *;
 @use "sass:map";
+@use 'sass:string';
 
 $directionsCssMapper:(
     left: right,
@@ -24,7 +25,7 @@ $directionsCssMapper:(
 };
 
 
-@mixin dirs($CssProps,$dir:$defaultDir) {
+@mixin dirss($CssProps,$dir:$defaultDir) {
     $supportedDirections : (rtl,ltr);
     $cssPropName : "";
     $cssPropValue : "";
@@ -38,7 +39,6 @@ $directionsCssMapper:(
         @each $supportedDir in $supportedDirections {
             @include dir($supportedDir){
                 @if $supportedDir == $dir {
-                    @debug  $dir;
                     #{$cssPropName} : #{$cssPropValue}
                 }@else{
                     @if map-has-key($map: $directionsCssMapper, $key:$PropertyDirection ){
@@ -84,3 +84,61 @@ $directionsCssMapper:(
 };
 
 
+
+@mixin dirs($props , $dir : rtl){
+    $supportedDirections : (rtl,ltr);
+    $css : ();
+    $oppsCss :();
+    @each $prop , $value in $props {
+        $PropertyDirection:$prop ;
+        @if str-index($prop,'-') {
+            $PropertyDirection : nth(str-split($prop, "-"), 2);
+        };
+        @if map-has-key($directionsCssMapper , $PropertyDirection) {
+            $css :map-merge($css,(#{$prop}:#{$value}));
+            $oppsCss: map-merge($oppsCss ,(#{str-replace($prop , $PropertyDirection , getOppositeDir($PropertyDirection))}: #{$value}));
+        }@else {
+            $values :();
+            $valuesOppis : ();
+            @if str-between("#{$value}","(",")") {
+                @each $single in str-split(str-between("#{$value}","(",")"),",") {
+                    @if map-has-key($map: $directionsCssMapper , $key: $single ) {
+                        $valuesOppis : append($valuesOppis ,getOppositeDir($single) , "comma");
+                        $values : append($values ,$single, "comma");
+                    }@else {
+                        $values : append($values ,string.unquote($single), "comma");
+                        $valuesOppis : append($valuesOppis ,string.unquote($single), "comma");
+                    }
+                }
+                $oppsCss :map-merge($oppsCss,(#{$prop}:#{str-replace($value,str-between("#{$value}","(",")"),$valuesOppis)}));
+                $css: map-merge($css , (#{$prop}:#{$value}));
+            }@else{
+                @each $single in $value {
+                    @if map-has-key($map: $directionsCssMapper , $key: $single ) {
+                        $valuesOppis : append($valuesOppis ,getOppositeDir($single) , "space");
+                        $values : append($values ,$single, "space");
+                    }@else {
+                        $values : append($values ,$single, "space");
+                        $valuesOppis : append($valuesOppis ,$single, "space");
+                    }
+                }
+                $css :map-merge($css,(#{$prop}:#{$values}));
+                $oppsCss: map-merge($oppsCss , (#{$prop}:#{$valuesOppis}));
+            }
+            
+        }
+    };
+    @each $supportedDir in $supportedDirections {
+        @include dir($supportedDir){
+            @if $supportedDir == $dir {
+                @each $key,$value in $css  {
+                    #{$key} : #{$value};
+                }
+            }@else{
+                @each $key,$value in $oppsCss {
+                    #{$key} : #{$value};
+                }
+            }
+        };
+    }    
+}

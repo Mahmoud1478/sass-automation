@@ -1,46 +1,43 @@
 $prefixes:(-webkit-,-o-, -ms-, -moz- );
-@mixin addPrefix($property,$value , $important:false) {
+@mixin addPrefix($property,$value ,$target : name ,$important:false) {
     $importantStatus :"";
     @if $important{
         $importantStatus : "!important" ;
     }
-    @each $prefix in $prefixes {
-        #{$prefix + $property} : #{$value +  $importantStatus};
+    @if $target == value {
+        @each $prefix in $prefixes {
+            #{$property} : #{$prefix + $value +  $importantStatus};
+        }
+        #{$property} : #{$value +  $importantStatus};
+    }@else{
+        @each $prefix in $prefixes {
+            #{$prefix + $property} : #{$value +  $importantStatus};
+        }
+        #{$property} : #{$value +  $importantStatus};
     }
-    #{$property} : #{$value +  $importantStatus};
 }
 
-@mixin borderRadius($value: $borderRadius) {
-    @include addPrefix(border-radius,$value);
+@mixin borderRadius($value: $borderRadius , $important:false) {
+    @include addPrefix(border-radius,$value,name , $important);
 }
 @mixin transition($value , $important:false) {
-    @include addPrefix(transition,$value, $important)
+    @include addPrefix(transition,$value,name , $important);
 }
 @mixin transform($value ,$important:false) {
-    @include addPrefix(transform,$value , $important)
+    @include addPrefix(transform,$value,name , $important);
 }
 @mixin boxShadow ($value ,$important:false){
-    @include addPrefix(box-shadow,#{$value} ,$important)
+    @include addPrefix(box-shadow,#{$value} ,name , $important);
 }
 
 @function prefixList ($property,$value){
     $values: ();
     @each $prefix in $prefixes {
-        $values:append($values,$prefix + $property $value ,  "space" );
+        $values:map-merge($values,($prefix + $property: $value));
     }
     @return $values
 };
 
-@mixin addValuePrefix($property,$value , $important:false) {
-    $importantStatus :"";
-    @if $important{
-        $importantStatus : "!important" ;
-    }
-    @each $prefix in $prefixes {
-        #{$property} : #{$prefix + $value +  $importantStatus};
-    }
-    #{$property} : #{$value +  $importantStatus};
-}
 
 
 

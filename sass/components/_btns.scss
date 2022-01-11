@@ -1,7 +1,2 @@
 @use"../tools";
 
-
-.btn{
-    @include tools.addValuePrefix(background-image,linear-gradient(left,#2ed8a3  0%,#2970ff 100%),true);
-    @include tools.transition(all .3s ease)
-}
