@@ -47,5 +47,27 @@ $fontFamilies:(
             style:normal,
             weight:700,
         )
+    ),
+    Nexa:(
+        (
+            src:'NexaRegular.otf' ,
+            style:normal,
+            weight:400,
+        ),
+        (
+            src:'NexaLight.otf' ,
+            style:normal,
+            weight:300,
+        ),
+        (
+            src:'NexaBlack.otf' ,
+            style:normal,
+            weight:500,
+        ),
+        (
+            src:'NexaXBold.otf' ,
+            style:normal,
+            weight:600,
+        ),
     )
 );

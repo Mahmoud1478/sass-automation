@@ -1,0 +1,8 @@
+@use  './../tools' as *;
+
+.overlay{
+    &-main{
+        background-color: get(overlay-main);
+        z-index: 999999999999999999;
+    }
+}

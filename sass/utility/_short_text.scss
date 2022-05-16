@@ -1,0 +1,14 @@
+.shorten {
+    --column : 3
+    display: -webkit-box !important;
+    -webkit-line-clamp: var(--column);
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    @for $var from 1 to 6 {
+        &-#{$var}{
+            --column : #{$var}
+        }
+    }
+
+}

@@ -1,0 +1,22 @@
+@use  "./../tools" as *;
+
+%base-btn{
+    @extend%text-trans-cap;
+    @extend%text-dec-none;
+    cursor: pointer;
+    transition: all cubic-bezier(0.895, 0.03, 0.685, 0.22);
+    @include borderRadius();
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    font-weight: 300;
+    
+
+}
+.btn-main{
+}
+.btn-second{
+}
+.btn-social{
+}
+

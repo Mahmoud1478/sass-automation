@@ -1,11 +1,3 @@
 @use  "./../tools" as * ; 
 
-.test{
-    @include dirs((
-        padding-right : 50px,
-        left:20px,
-        text-align:left,
-        transform-origin:top right,
-        background-image : -webkit-linear-gradient(left,#2ed8a3 0%,#2970ff 100%),
-    ))
-}
+

@@ -85,7 +85,7 @@ $directionsCssMapper:(
 
 
 
-@mixin dirs($props , $dir : rtl){
+@mixin dirs($props , $dir : $defaultDir){
     $supportedDirections : (rtl,ltr);
     $css : ();
     $oppsCss :();

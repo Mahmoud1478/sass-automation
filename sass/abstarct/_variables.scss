@@ -1,2 +1,6 @@
-$white : white;
-$black : black;
+@use  "./../config" as *;
+:root{
+    @each $name , $value in $cssVars {
+        --#{$name} : #{$value};
+    };
+}

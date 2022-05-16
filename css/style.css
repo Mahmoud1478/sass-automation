@@ -58,18 +58,19 @@ html[dir=ltr] body {
 }
 
 html[dir=rtl] .test {
-  padding-right: 50px;
-  left: 20px;
+  padding-left: 50px;
   text-align: left;
-  transform-origin: top right;
-  background-image: -webkit-linear-gradient(left, #2ed8a3 0%, #2970ff 100%);
+  transform-origin: top left;
 }
 html[dir=ltr] .test {
-  padding-left: 50px;
-  right: 20px;
+  padding-right: 50px;
   text-align: right;
-  transform-origin: top left;
-  background-image: -webkit-linear-gradient(right,  #2ed8a3 0%,  #2970ff 100%);
+  transform-origin: top right;
+}
+@media (min-width : 575.99px) and (max-width : 767.98px) {
+  .test {
+    padding: left;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

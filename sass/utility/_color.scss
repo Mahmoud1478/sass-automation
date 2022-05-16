@@ -1,0 +1,22 @@
+@use  "./../tools" as *;
+
+.background{
+    &-main{
+        background-color: get(main);
+        &-dark{
+            background-color: get(main-dark);
+        }
+    }
+    &-white{
+        background-color: get(white);
+    }
+}
+
+.color{
+    &-white{
+        color: get(white);
+    }
+    &-main{
+        color: get(main);
+    }
+}
